@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>P&Y Infotech | Innovative IT Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #050a12;
+    --bg2: #080f1c;
+    --accent: #00d4ff;
+    --accent2: #7b2ff7;
+    --accent3: #00ff88;
+    --text: #e0eaf5;
+    --muted: #6a8099;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(0,212,255,0.15);
+    --glow: 0 0 30px rgba(0,212,255,0.3);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---- NOISE OVERLAY ---- */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:0; opacity:0.4;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top:0; width:100%; z-index:100;
+    background: rgba(5,10,18,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items:center; justify-content:space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem; font-weight:700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-shadow: var(--glow);
+  }
+
+  .nav-logo span { color: var(--accent2); }
+
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration:none;
+    font-size:0.85rem; font-weight:500;
+    letter-spacing:1px; text-transform:uppercase;
+    transition: color 0.3s;
+    position:relative;
+  }
+
+  .nav-links a::after {
+    content:''; position:absolute; bottom:-4px; left:0;
+    width:0; height:1px; background:var(--accent);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color:var(--accent); }
+  .nav-links a:hover::after { width:100%; }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color:#fff !important; padding:8px 20px; border-radius:4px;
+    font-weight:600 !important;
+  }
+  .nav-cta::after { display:none !important; }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; padding:0 5%;
+    position:relative; overflow:hidden;
+  }
+
+  .hero-grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: perspective(800px) rotateX(10deg) translateY(0); }
+    100% { transform: perspective(800px) rotateX(10deg) translateY(60px); }
+  }
+
+  .hero-glow {
+    position:absolute;
+    width:600px; height:600px;
+    background: radial-gradient(circle, rgba(123,47,247,0.15) 0%, transparent 70%);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { transform:translate(-50%,-50%) scale(1); opacity:0.6; }
+    50% { transform:translate(-50%,-50%) scale(1.1); opacity:1; }
+  }
+
+  .hero-tag {
+    font-size:0.75rem; letter-spacing:4px; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:1.5rem;
+    position:relative; z-index:2;
+    border:1px solid var(--border); padding:6px 16px; border-radius:20px;
+    display:inline-block;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight:900; line-height:1.1;
+    position:relative; z-index:2;
+    margin-bottom:1.5rem;
+  }
+
+  .hero-title .line1 { display:block; color:var(--text); }
+  .hero-title .line2 {
+    display:block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .hero-sub {
+    font-size:1.1rem; color:var(--muted); max-width:560px;
+    line-height:1.7; position:relative; z-index:2; margin-bottom:2.5rem;
+  }
+
+  .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color:#fff; padding:14px 32px; border-radius:4px;
+    font-weight:600; font-size:0.95rem; letter-spacing:1px;
+    text-decoration:none; text-transform:uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(123,47,247,0.4);
+  }
+
+  .btn-primary:hover { transform:translateY(-2px); box-shadow: 0 0 35px rgba(123,47,247,0.6); }
+
+  .btn-outline {
+    border:1px solid var(--accent); color:var(--accent);
+    padding:14px 32px; border-radius:4px;
+    font-weight:600; font-size:0.95rem; letter-spacing:1px;
+    text-decoration:none; text-transform:uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { background:var(--accent); color:var(--bg); }
+
+  .hero-stats {
+    display:flex; gap:3rem; margin-top:4rem;
+    position:relative; z-index:2; flex-wrap:wrap; justify-content:center;
+  }
+
+  .stat { text-align:center; }
+  .stat-num {
+    font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:700;
+    color:var(--accent); display:block;
+    text-shadow: var(--glow);
+  }
+  .stat-label { font-size:0.75rem; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
+
+  /* ---- SECTION BASE ---- */
+  section { padding:100px 5%; position:relative; z-index:1; }
+
+  .section-label {
+    font-size:0.7rem; letter-spacing:5px; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:1rem;
+  }
+
+  .section-title {
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(1.8rem,4vw,3rem); font-weight:700;
+    line-height:1.2; margin-bottom:1rem;
+  }
+
+  .section-title span {
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .section-desc { color:var(--muted); font-size:1rem; line-height:1.7; max-width:520px; }
+
+  /* ---- ABOUT ---- */
+  #about { background:var(--bg2); }
+
+  .about-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+    max-width:1200px; margin:0 auto;
+  }
+
+  .about-visual {
+    position:relative; height:400px;
+  }
+
+  .about-box {
+    position:absolute; border-radius:8px;
+    border:1px solid var(--border); background:var(--card);
+    backdrop-filter:blur(10px);
+  }
+
+  .about-box.main { width:100%; height:280px; top:0; left:0; overflow:hidden; }
+  .about-box.main-inner {
+    width:100%; height:100%;
+    background: linear-gradient(135deg, rgba(123,47,247,0.1), rgba(0,212,255,0.1));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Orbitron',sans-serif; font-size:5rem; color:rgba(0,212,255,0.2);
+    font-weight:900;
+  }
+
+  .about-badge {
+    position:absolute; bottom:0; right:0;
+    background:linear-gradient(135deg, var(--accent2), var(--accent));
+    padding:20px 28px; border-radius:8px;
+    text-align:center;
+  }
+  .about-badge strong { font-family:'Orbitron',sans-serif; font-size:2rem; display:block; }
+  .about-badge span { font-size:0.75rem; letter-spacing:2px; opacity:0.85; }
+
+  .about-text { display:flex; flex-direction:column; gap:1.5rem; }
+
+  .about-feature {
+    display:flex; gap:1rem; align-items:flex-start;
+    padding:1.2rem; border-radius:8px;
+    border:1px solid var(--border); background:var(--card);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .about-feature:hover { border-color:var(--accent); transform:translateX(6px); }
+
+  .feat-icon {
+    width:40px; height:40px; border-radius:8px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--accent2), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+  }
+
+  .feat-content h4 { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
+  .feat-content p { font-size:0.85rem; color:var(--muted); line-height:1.6; }
+
+  /* ---- SERVICES ---- */
+  #services { background:var(--bg); }
+
+  .services-header { text-align:center; margin-bottom:4rem; }
+  .services-header .section-desc { margin:0 auto; }
+
+  .services-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:1.5rem; max-width:1200px; margin:0 auto;
+  }
+
+  .service-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:2rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position:relative; overflow:hidden;
+    cursor:default;
+  }
+
+  .service-card::before {
+    content:''; position:absolute; top:0; left:0;
+    width:100%; height:2px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform:translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .service-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.4); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+  .service-card:hover::before { transform:translateX(100%); }
+
+  .svc-icon {
+    width:56px; height:56px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem; margin-bottom:1.5rem;
+  }
+
+  .svc-icon.blue { background:rgba(0,212,255,0.12); }
+  .svc-icon.purple { background:rgba(123,47,247,0.12); }
+  .svc-icon.green { background:rgba(0,255,136,0.12); }
+  .svc-icon.orange { background:rgba(255,160,0,0.12); }
+
+  .service-card h3 { font-size:1.1rem; font-weight:600; margin-bottom:0.8rem; }
+  .service-card p { font-size:0.88rem; color:var(--muted); line-height:1.7; margin-bottom:1.2rem; }
+
+  .svc-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .svc-tag {
+    font-size:0.7rem; padding:3px 10px; border-radius:20px;
+    border:1px solid var(--border); color:var(--muted); letter-spacing:0.5px;
+  }
+
+  /* ---- TESTIMONIALS ---- */
+  #testimonials { background:var(--bg2); }
+  .test-header { text-align:center; margin-bottom:4rem; }
+  .test-header .section-desc { margin:0 auto; }
+
+  .test-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:1.5rem; max-width:1100px; margin:0 auto;
+  }
+
+  .test-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .test-card:hover { border-color:rgba(123,47,247,0.4); transform:translateY(-4px); }
+
+  .test-stars { color:#ffd700; font-size:0.9rem; margin-bottom:1rem; letter-spacing:2px; }
+
+  .test-quote {
+    font-size:0.95rem; line-height:1.75; color:var(--text);
+    font-style:italic; margin-bottom:1.5rem;
+    padding-left:1rem; border-left:2px solid var(--accent2);
+  }
+
+  .test-author { display:flex; align-items:center; gap:0.8rem; }
+
+  .test-avatar {
+    width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg, var(--accent2), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:1rem; color:#fff;
+    flex-shrink:0;
+  }
+
+  .test-name { font-weight:600; font-size:0.9rem; }
+  .test-role { font-size:0.78rem; color:var(--muted); }
+
+  /* ---- CONTACT ---- */
+  #contact { background:var(--bg); }
+
+  .contact-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:5rem;
+    max-width:1100px; margin:0 auto; align-items:start;
+  }
+
+  .contact-info { display:flex; flex-direction:column; gap:2rem; }
+
+  .contact-item {
+    display:flex; gap:1rem; align-items:flex-start;
+    padding:1.2rem; border-radius:8px;
+    border:1px solid var(--border); background:var(--card);
+  }
+
+  .c-icon {
+    width:44px; height:44px; border-radius:8px; flex-shrink:0;
+    background:linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,247,0.15));
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+  }
+
+  .c-label { font-size:0.7rem; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:0.3rem; }
+  .c-value { font-size:0.95rem; font-weight:500; color:var(--text); }
+
+  .contact-form { display:flex; flex-direction:column; gap:1rem; }
+
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+  .form-group { display:flex; flex-direction:column; gap:0.4rem; }
+
+  .form-group label { font-size:0.75rem; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:6px; padding:12px 14px;
+    color:var(--text); font-family:'Exo 2',sans-serif; font-size:0.9rem;
+    outline:none; transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(0,212,255,0.08);
+  }
+
+  .form-group textarea { height:120px; resize:vertical; }
+
+  .form-group select option { background:var(--bg2); }
+
+  .submit-btn {
+    background:linear-gradient(135deg, var(--accent2), var(--accent));
+    color:#fff; border:none; padding:14px 28px;
+    border-radius:6px; font-size:0.95rem; font-weight:600;
+    letter-spacing:1px; text-transform:uppercase;
+    cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;
+    box-shadow:0 0 20px rgba(123,47,247,0.3);
+    font-family:'Exo 2',sans-serif;
+  }
+
+  .submit-btn:hover { transform:translateY(-2px); box-shadow:0 0 35px rgba(123,47,247,0.5); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background:var(--bg2); border-top:1px solid var(--border);
+    padding:40px 5%; text-align:center;
+  }
+
+  .footer-logo {
+    font-family:'Orbitron',sans-serif; font-size:1.5rem;
+    font-weight:700; color:var(--accent); letter-spacing:2px; margin-bottom:0.5rem;
+  }
+
+  .footer-logo span { color:var(--accent2); }
+
+  .footer-tagline { color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem; }
+
+  .footer-links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+  .footer-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--accent); }
+
+  .footer-bottom {
+    color:var(--muted); font-size:0.78rem;
+    border-top:1px solid var(--border); padding-top:1.5rem;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay:0.15s; opacity:0; }
+  .delay-2 { animation-delay:0.3s; opacity:0; }
+  .delay-3 { animation-delay:0.45s; opacity:0; }
+  .delay-4 { animation-delay:0.6s; opacity:0; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width:768px) {
+    .about-grid, .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .about-visual { height:220px; }
+    .form-row { grid-template-columns:1fr; }
+    .nav-links { display:none; }
+    .hero-stats { gap:1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">P<span>&</span>Y Infotech</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag fade-up">🚀 Next-Gen IT Solutions</div>
+  <h1 class="hero-title fade-up delay-1">
+    <span class="line1">P&amp;Y Infotech</span>
+    <span class="line2">Powering Digital Future</span>
+  </h1>
+  <p class="hero-sub fade-up delay-2">
+    We build cutting-edge software, websites & mobile apps that transform businesses. Your vision, engineered to perfection.
+  </p>
+  <div class="hero-buttons fade-up delay-3">
+    <a href="#services" class="btn-primary">Explore Services</a>
+    <a href="#contact" class="btn-outline">Get a Quote</a>
+  </div>
+  <div class="hero-stats fade-up delay-4">
+    <div class="stat">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Projects Done</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">Happy Clients</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-box main">
+        <div class="about-main-inner" style="width:100%;height:100%;background:linear-gradient(135deg,rgba(123,47,247,0.1),rgba(0,212,255,0.1));display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:5rem;color:rgba(0,212,255,0.15);font-weight:900;">P&amp;Y</div>
+      </div>
+      <div class="about-badge">
+        <strong>5+</strong>
+        <span>YEARS OF EXCELLENCE</span>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div>
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Innovating <span>Technology</span><br/>Driving Growth</h2>
+        <p class="section-desc">P&Y Infotech, founded by Pankaj Kumar Yadav, is a dynamic IT company delivering smart digital solutions to businesses worldwide. We blend innovation, expertise, and passion to craft technology that works.</p>
+      </div>
+
+      <div class="about-feature">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-content">
+          <h4>Expert-Led Development</h4>
+          <p>Each project is led by Pankaj Kumar Yadav — ensuring quality, clarity, and client satisfaction at every step.</p>
+        </div>
+      </div>
+
+      <div class="about-feature">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-content">
+          <h4>Client-First Approach</h4>
+          <p>We listen, understand, and build exactly what your business needs — on time, every time.</p>
+        </div>
+      </div>
+
+      <div class="about-feature">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-content">
+          <h4>Secure & Scalable</h4>
+          <p>Our solutions are engineered for security, performance, and growth from day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-desc">From consulting to deployment — we cover the full technology spectrum to accelerate your business.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon blue">🌐</div>
+      <h3>Web Development</h3>
+      <p>Stunning, high-performance websites and web applications built with modern technologies. From landing pages to full-scale platforms.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">HTML/CSS</span>
+        <span class="svc-tag">React</span>
+        <span class="svc-tag">Node.js</span>
+        <span class="svc-tag">PHP</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-icon purple">💻</div>
+      <h3>Software Development</h3>
+      <p>Custom enterprise software solutions designed to automate, optimize, and transform your business operations efficiently.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Java</span>
+        <span class="svc-tag">Python</span>
+        <span class="svc-tag">ERP</span>
+        <span class="svc-tag">CRM</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-icon green">📱</div>
+      <h3>Mobile App Development</h3>
+      <p>Sleek, user-friendly mobile applications for Android & iOS that deliver seamless experiences across all devices.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Android</span>
+        <span class="svc-tag">iOS</span>
+        <span class="svc-tag">Flutter</span>
+        <span class="svc-tag">React Native</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="svc-icon orange">🧠</div>
+      <h3>IT Consulting</h3>
+      <p>Strategic IT guidance to help you make the right technology decisions — from infrastructure planning to digital transformation roadmaps.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Strategy</span>
+        <span class="svc-tag">Cloud</span>
+        <span class="svc-tag">Security</span>
+        <span class="svc-tag">Digital Transformation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-header">
+    <p class="section-label">Client Love</p>
+    <h2 class="section-title">What Our <span>Clients Say</span></h2>
+    <p class="section-desc">We let the results and relationships speak for themselves.</p>
+  </div>
+
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">P&Y Infotech built our e-commerce platform from scratch. The team was professional, communicative, and delivered beyond expectations. Highly recommended!</p>
+      <div class="test-author">
+        <div class="test-avatar">R</div>
+        <div>
+          <div class="test-name">Rahul Sharma</div>
+          <div class="test-role">CEO, ShopEase India</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">The mobile app they developed for us has transformed our customer engagement. Clean UI, fast performance, and zero bugs on launch. Truly impressive work.</p>
+      <div class="test-author">
+        <div class="test-avatar">P</div>
+        <div>
+          <div class="test-name">Priya Mehta</div>
+          <div class="test-role">Founder, FitTrack App</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">Their IT consulting helped us cut operational costs by 30% and modernize our entire infrastructure. Smart, reliable, and genuinely invested in our success.</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div>
+          <div class="test-name">Amit Verma</div>
+          <div class="test-role">Director, LogiCorp Solutions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Reach Out</p>
+      <h2 class="section-title">Let's Build <span>Something Great</span></h2>
+      <p class="section-desc" style="margin-bottom:2.5rem;">Have a project in mind? Get in touch with us today and let's turn your idea into reality.</p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="c-icon">👤</div>
+          <div>
+            <div class="c-label">Owner</div>
+            <div class="c-value">Pankaj Kumar Yadav</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-label">Mobile</div>
+            <div class="c-value">+91 9709354054</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value">Pankajbca11@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 00000 00000"/>
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="" disabled selected>Select a service...</option>
+          <option>Web Development</option>
+          <option>Software Development</option>
+          <option>Mobile App Development</option>
+          <option>IT Consulting</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Project Details</label>
+        <textarea placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="alert('Thank you! We will contact you shortly. 🚀')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">P<span>&</span>Y Infotech</div>
+  <p class="footer-tagline">Innovating Technology · Driving Growth</p>
+  <div class="footer-links">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    © 2024 P&Y Infotech. All rights reserved. | Founded by Pankaj Kumar Yadav
+  </div>
+</footer>
+
+</body>
+</html>
