@@ -3,755 +3,1582 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>P&Y Infotech | Innovative IT Solutions</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<title>P&Y Infotech | Innovative IT Solutions for Business Growth</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg: #050a12;
-    --bg2: #080f1c;
-    --accent: #00d4ff;
-    --accent2: #7b2ff7;
-    --accent3: #00ff88;
-    --text: #e0eaf5;
-    --muted: #6a8099;
-    --card: rgba(255,255,255,0.04);
-    --border: rgba(0,212,255,0.15);
-    --glow: 0 0 30px rgba(0,212,255,0.3);
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Exo 2', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* ---- NOISE OVERLAY ---- */
-  body::before {
-    content:'';
-    position:fixed; inset:0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events:none; z-index:0; opacity:0.4;
-  }
-
-  /* ---- NAV ---- */
-  nav {
-    position: fixed; top:0; width:100%; z-index:100;
-    background: rgba(5,10,18,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 5%;
-    display: flex; align-items:center; justify-content:space-between;
-    height: 70px;
-  }
-
-  .nav-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem; font-weight:700;
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-shadow: var(--glow);
-  }
-
-  .nav-logo span { color: var(--accent2); }
-
-  .nav-links { display:flex; gap:2rem; list-style:none; }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration:none;
-    font-size:0.85rem; font-weight:500;
-    letter-spacing:1px; text-transform:uppercase;
-    transition: color 0.3s;
-    position:relative;
-  }
-
-  .nav-links a::after {
-    content:''; position:absolute; bottom:-4px; left:0;
-    width:0; height:1px; background:var(--accent);
-    transition: width 0.3s;
-  }
-
-  .nav-links a:hover { color:var(--accent); }
-  .nav-links a:hover::after { width:100%; }
-
-  .nav-cta {
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color:#fff !important; padding:8px 20px; border-radius:4px;
-    font-weight:600 !important;
-  }
-  .nav-cta::after { display:none !important; }
-
-  /* ---- HERO ---- */
-  #hero {
-    min-height:100vh; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    text-align:center; padding:0 5%;
-    position:relative; overflow:hidden;
-  }
-
-  .hero-grid {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridMove 20s linear infinite;
-  }
-
-  @keyframes gridMove {
-    0% { transform: perspective(800px) rotateX(10deg) translateY(0); }
-    100% { transform: perspective(800px) rotateX(10deg) translateY(60px); }
-  }
-
-  .hero-glow {
-    position:absolute;
-    width:600px; height:600px;
-    background: radial-gradient(circle, rgba(123,47,247,0.15) 0%, transparent 70%);
-    top:50%; left:50%; transform:translate(-50%,-50%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%,100% { transform:translate(-50%,-50%) scale(1); opacity:0.6; }
-    50% { transform:translate(-50%,-50%) scale(1.1); opacity:1; }
-  }
-
-  .hero-tag {
-    font-size:0.75rem; letter-spacing:4px; text-transform:uppercase;
-    color:var(--accent); font-weight:600; margin-bottom:1.5rem;
-    position:relative; z-index:2;
-    border:1px solid var(--border); padding:6px 16px; border-radius:20px;
-    display:inline-block;
-  }
-
-  .hero-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.5rem, 7vw, 5.5rem);
-    font-weight:900; line-height:1.1;
-    position:relative; z-index:2;
-    margin-bottom:1.5rem;
-  }
-
-  .hero-title .line1 { display:block; color:var(--text); }
-  .hero-title .line2 {
-    display:block;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-
-  .hero-sub {
-    font-size:1.1rem; color:var(--muted); max-width:560px;
-    line-height:1.7; position:relative; z-index:2; margin-bottom:2.5rem;
-  }
-
-  .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color:#fff; padding:14px 32px; border-radius:4px;
-    font-weight:600; font-size:0.95rem; letter-spacing:1px;
-    text-decoration:none; text-transform:uppercase;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 20px rgba(123,47,247,0.4);
-  }
-
-  .btn-primary:hover { transform:translateY(-2px); box-shadow: 0 0 35px rgba(123,47,247,0.6); }
-
-  .btn-outline {
-    border:1px solid var(--accent); color:var(--accent);
-    padding:14px 32px; border-radius:4px;
-    font-weight:600; font-size:0.95rem; letter-spacing:1px;
-    text-decoration:none; text-transform:uppercase;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .btn-outline:hover { background:var(--accent); color:var(--bg); }
-
-  .hero-stats {
-    display:flex; gap:3rem; margin-top:4rem;
-    position:relative; z-index:2; flex-wrap:wrap; justify-content:center;
-  }
-
-  .stat { text-align:center; }
-  .stat-num {
-    font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:700;
-    color:var(--accent); display:block;
-    text-shadow: var(--glow);
-  }
-  .stat-label { font-size:0.75rem; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
-
-  /* ---- SECTION BASE ---- */
-  section { padding:100px 5%; position:relative; z-index:1; }
-
-  .section-label {
-    font-size:0.7rem; letter-spacing:5px; text-transform:uppercase;
-    color:var(--accent); font-weight:600; margin-bottom:1rem;
-  }
-
-  .section-title {
-    font-family:'Orbitron',sans-serif;
-    font-size:clamp(1.8rem,4vw,3rem); font-weight:700;
-    line-height:1.2; margin-bottom:1rem;
-  }
-
-  .section-title span {
-    background:linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-
-  .section-desc { color:var(--muted); font-size:1rem; line-height:1.7; max-width:520px; }
-
-  /* ---- ABOUT ---- */
-  #about { background:var(--bg2); }
-
-  .about-grid {
-    display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
-    max-width:1200px; margin:0 auto;
-  }
-
-  .about-visual {
-    position:relative; height:400px;
-  }
-
-  .about-box {
-    position:absolute; border-radius:8px;
-    border:1px solid var(--border); background:var(--card);
-    backdrop-filter:blur(10px);
-  }
-
-  .about-box.main { width:100%; height:280px; top:0; left:0; overflow:hidden; }
-  .about-box.main-inner {
-    width:100%; height:100%;
-    background: linear-gradient(135deg, rgba(123,47,247,0.1), rgba(0,212,255,0.1));
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Orbitron',sans-serif; font-size:5rem; color:rgba(0,212,255,0.2);
-    font-weight:900;
-  }
-
-  .about-badge {
-    position:absolute; bottom:0; right:0;
-    background:linear-gradient(135deg, var(--accent2), var(--accent));
-    padding:20px 28px; border-radius:8px;
-    text-align:center;
-  }
-  .about-badge strong { font-family:'Orbitron',sans-serif; font-size:2rem; display:block; }
-  .about-badge span { font-size:0.75rem; letter-spacing:2px; opacity:0.85; }
-
-  .about-text { display:flex; flex-direction:column; gap:1.5rem; }
-
-  .about-feature {
-    display:flex; gap:1rem; align-items:flex-start;
-    padding:1.2rem; border-radius:8px;
-    border:1px solid var(--border); background:var(--card);
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .about-feature:hover { border-color:var(--accent); transform:translateX(6px); }
-
-  .feat-icon {
-    width:40px; height:40px; border-radius:8px; flex-shrink:0;
-    background:linear-gradient(135deg, var(--accent2), var(--accent));
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.1rem;
-  }
-
-  .feat-content h4 { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
-  .feat-content p { font-size:0.85rem; color:var(--muted); line-height:1.6; }
-
-  /* ---- SERVICES ---- */
-  #services { background:var(--bg); }
-
-  .services-header { text-align:center; margin-bottom:4rem; }
-  .services-header .section-desc { margin:0 auto; }
-
-  .services-grid {
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-    gap:1.5rem; max-width:1200px; margin:0 auto;
-  }
-
-  .service-card {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:12px; padding:2rem;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    position:relative; overflow:hidden;
-    cursor:default;
-  }
-
-  .service-card::before {
-    content:''; position:absolute; top:0; left:0;
-    width:100%; height:2px;
-    background:linear-gradient(90deg, transparent, var(--accent), transparent);
-    transform:translateX(-100%);
-    transition: transform 0.5s;
-  }
-
-  .service-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.4); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
-  .service-card:hover::before { transform:translateX(100%); }
-
-  .svc-icon {
-    width:56px; height:56px; border-radius:12px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem; margin-bottom:1.5rem;
-  }
-
-  .svc-icon.blue { background:rgba(0,212,255,0.12); }
-  .svc-icon.purple { background:rgba(123,47,247,0.12); }
-  .svc-icon.green { background:rgba(0,255,136,0.12); }
-  .svc-icon.orange { background:rgba(255,160,0,0.12); }
-
-  .service-card h3 { font-size:1.1rem; font-weight:600; margin-bottom:0.8rem; }
-  .service-card p { font-size:0.88rem; color:var(--muted); line-height:1.7; margin-bottom:1.2rem; }
-
-  .svc-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
-  .svc-tag {
-    font-size:0.7rem; padding:3px 10px; border-radius:20px;
-    border:1px solid var(--border); color:var(--muted); letter-spacing:0.5px;
-  }
-
-  /* ---- TESTIMONIALS ---- */
-  #testimonials { background:var(--bg2); }
-  .test-header { text-align:center; margin-bottom:4rem; }
-  .test-header .section-desc { margin:0 auto; }
-
-  .test-grid {
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
-    gap:1.5rem; max-width:1100px; margin:0 auto;
-  }
-
-  .test-card {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:12px; padding:2rem;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .test-card:hover { border-color:rgba(123,47,247,0.4); transform:translateY(-4px); }
-
-  .test-stars { color:#ffd700; font-size:0.9rem; margin-bottom:1rem; letter-spacing:2px; }
-
-  .test-quote {
-    font-size:0.95rem; line-height:1.75; color:var(--text);
-    font-style:italic; margin-bottom:1.5rem;
-    padding-left:1rem; border-left:2px solid var(--accent2);
-  }
-
-  .test-author { display:flex; align-items:center; gap:0.8rem; }
-
-  .test-avatar {
-    width:44px; height:44px; border-radius:50%;
-    background:linear-gradient(135deg, var(--accent2), var(--accent));
-    display:flex; align-items:center; justify-content:center;
-    font-weight:700; font-size:1rem; color:#fff;
-    flex-shrink:0;
-  }
-
-  .test-name { font-weight:600; font-size:0.9rem; }
-  .test-role { font-size:0.78rem; color:var(--muted); }
-
-  /* ---- CONTACT ---- */
-  #contact { background:var(--bg); }
-
-  .contact-grid {
-    display:grid; grid-template-columns:1fr 1fr; gap:5rem;
-    max-width:1100px; margin:0 auto; align-items:start;
-  }
-
-  .contact-info { display:flex; flex-direction:column; gap:2rem; }
-
-  .contact-item {
-    display:flex; gap:1rem; align-items:flex-start;
-    padding:1.2rem; border-radius:8px;
-    border:1px solid var(--border); background:var(--card);
-  }
-
-  .c-icon {
-    width:44px; height:44px; border-radius:8px; flex-shrink:0;
-    background:linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,247,0.15));
-    border:1px solid var(--border);
-    display:flex; align-items:center; justify-content:center; font-size:1.2rem;
-  }
-
-  .c-label { font-size:0.7rem; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:0.3rem; }
-  .c-value { font-size:0.95rem; font-weight:500; color:var(--text); }
-
-  .contact-form { display:flex; flex-direction:column; gap:1rem; }
-
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-
-  .form-group { display:flex; flex-direction:column; gap:0.4rem; }
-
-  .form-group label { font-size:0.75rem; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
-
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:6px; padding:12px 14px;
-    color:var(--text); font-family:'Exo 2',sans-serif; font-size:0.9rem;
-    outline:none; transition: border-color 0.3s, box-shadow 0.3s;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color:var(--accent);
-    box-shadow:0 0 0 3px rgba(0,212,255,0.08);
-  }
-
-  .form-group textarea { height:120px; resize:vertical; }
-
-  .form-group select option { background:var(--bg2); }
-
-  .submit-btn {
-    background:linear-gradient(135deg, var(--accent2), var(--accent));
-    color:#fff; border:none; padding:14px 28px;
-    border-radius:6px; font-size:0.95rem; font-weight:600;
-    letter-spacing:1px; text-transform:uppercase;
-    cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;
-    box-shadow:0 0 20px rgba(123,47,247,0.3);
-    font-family:'Exo 2',sans-serif;
-  }
-
-  .submit-btn:hover { transform:translateY(-2px); box-shadow:0 0 35px rgba(123,47,247,0.5); }
-
-  /* ---- FOOTER ---- */
-  footer {
-    background:var(--bg2); border-top:1px solid var(--border);
-    padding:40px 5%; text-align:center;
-  }
-
-  .footer-logo {
-    font-family:'Orbitron',sans-serif; font-size:1.5rem;
-    font-weight:700; color:var(--accent); letter-spacing:2px; margin-bottom:0.5rem;
-  }
-
-  .footer-logo span { color:var(--accent2); }
-
-  .footer-tagline { color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem; }
-
-  .footer-links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
-  .footer-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--accent); }
-
-  .footer-bottom {
-    color:var(--muted); font-size:0.78rem;
-    border-top:1px solid var(--border); padding-top:1.5rem;
-  }
-
-  /* ---- ANIMATIONS ---- */
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(30px); }
-    to { opacity:1; transform:translateY(0); }
-  }
-
-  .fade-up { animation: fadeUp 0.7s ease forwards; }
-  .delay-1 { animation-delay:0.15s; opacity:0; }
-  .delay-2 { animation-delay:0.3s; opacity:0; }
-  .delay-3 { animation-delay:0.45s; opacity:0; }
-  .delay-4 { animation-delay:0.6s; opacity:0; }
-
-  /* ---- RESPONSIVE ---- */
-  @media (max-width:768px) {
-    .about-grid, .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
-    .about-visual { height:220px; }
-    .form-row { grid-template-columns:1fr; }
-    .nav-links { display:none; }
-    .hero-stats { gap:1.5rem; }
-  }
+:root {
+  --primary: #0a1628;
+  --secondary: #1a3a6b;
+  --accent: #2563eb;
+  --accent2: #06b6d4;
+  --accent3: #f59e0b;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --white: #ffffff;
+  --bg-light: #f8fafc;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --gradient: linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #2563eb 100%);
+  --gradient2: linear-gradient(135deg, #2563eb, #06b6d4);
+  --shadow: 0 4px 24px rgba(37,99,235,0.10);
+  --shadow-lg: 0 20px 60px rgba(10,22,40,0.15);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#f1f5f9;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;
+  transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:var(--shadow);}
+
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-svg{width:44px;height:44px;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(37,99,235,0.35));}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--primary);}
+.logo-text span{color:var(--accent);}
+.logo-text em{color:var(--accent2);font-style:normal;}
+
+.nav-menu{display:flex;list-style:none;gap:0.2rem;align-items:center;}
+.nav-menu a{
+  color:var(--text-light);text-decoration:none;
+  font-size:0.88rem;font-weight:500;
+  padding:8px 14px;border-radius:8px;
+  transition:all 0.2s;
+}
+.nav-menu a:hover,.nav-menu a.active{color:var(--accent);background:rgba(37,99,235,0.07);}
+.nav-cta{
+  background:var(--gradient2)!important;
+  color:#fff!important;
+  padding:9px 20px!important;border-radius:8px!important;
+  font-weight:600!important;
+  box-shadow:0 4px 15px rgba(37,99,235,0.3);
+  transition:transform 0.2s,box-shadow 0.2s!important;
+}
+.nav-cta:hover{transform:translateY(-1px)!important;box-shadow:0 8px 25px rgba(37,99,235,0.4)!important;background:rgba(0,0,0,0)!important;}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
+.hamburger span{width:24px;height:2px;background:var(--primary);border-radius:2px;transition:all 0.3s;}
+
+.mobile-menu{
+  display:none;position:fixed;top:72px;left:0;right:0;
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:1rem 5%;flex-direction:column;gap:0.5rem;z-index:999;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);text-decoration:none;padding:10px;border-radius:8px;font-weight:500;transition:background 0.2s;}
+.mobile-menu a:hover{background:var(--bg-light);}
+
+/* ===== HERO ===== */
+#home{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 5% 60px;
+  position:relative;overflow:hidden;
+  background:var(--primary);
+}
+
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(37,99,235,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(6,182,212,0.15) 0%, transparent 50%),
+    var(--primary);
+}
+
+/* Animated particles */
+.particles{position:absolute;inset:0;overflow:hidden;}
+.particle{
+  position:absolute;border-radius:50%;opacity:0.4;
+  animation:float linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+  10%{opacity:0.4;}
+  90%{opacity:0.4;}
+  100%{transform:translateY(-100px) rotate(720deg);opacity:0;}
+}
+
+/* Animated lines */
+.hero-lines{position:absolute;inset:0;overflow:hidden;}
+.hero-line{
+  position:absolute;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(37,99,235,0.3),transparent);
+  animation:scan 4s linear infinite;
+}
+@keyframes scan{0%{transform:translateY(-100px);}100%{transform:translateY(100vh);}}
+
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+.hero-content{position:relative;z-index:2;max-width:700px;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);
+  padding:6px 16px;border-radius:20px;margin-bottom:2rem;
+  font-size:0.78rem;letter-spacing:2px;color:var(--accent2);text-transform:uppercase;font-weight:600;
+  animation:fadeUp 0.6s ease forwards;
+}
+.badge-dot{width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;};}
+
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,6vw,4.5rem);
+  font-weight:800;line-height:1.1;
+  color:#fff;margin-bottom:1.5rem;
+  animation:fadeUp 0.6s 0.1s ease both;
+}
+.hero-title .highlight{
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-sub{
+  font-size:1.1rem;color:rgba(255,255,255,0.65);
+  line-height:1.75;max-width:560px;margin-bottom:2.5rem;
+  animation:fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-btns{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp 0.6s 0.3s ease both;
+}
+
+.btn-primary{
+  background:var(--gradient2);color:#fff;
+  padding:14px 30px;border-radius:10px;
+  font-weight:600;font-size:0.95rem;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 8px 25px rgba(37,99,235,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(37,99,235,0.5);}
+
+.btn-outline-white{
+  border:2px solid rgba(255,255,255,0.25);color:#fff;
+  padding:14px 30px;border-radius:10px;
+  font-weight:600;font-size:0.95rem;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.05);
+}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);}
+
+.hero-stats{
+  display:flex;gap:2.5rem;margin-top:4rem;padding-top:3rem;
+  border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;
+  animation:fadeUp 0.6s 0.4s ease both;
+}
+.stat-item{text-align:left;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;display:block;}
+.stat-num span{color:var(--accent2);}
+.stat-label{font-size:0.78rem;color:rgba(255,255,255,0.5);letter-spacing:1px;}
+
+.hero-visual{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:420px;z-index:2;
+  animation:fadeUp 0.8s 0.3s ease both;
+  display:none;
+}
+@media(min-width:1100px){.hero-visual{display:block;}}
+
+.hero-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:2rem;backdrop-filter:blur(20px);
+}
+.hcard-title{font-size:0.75rem;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;}
+.hcard-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.hcard-metric{background:rgba(255,255,255,0.05);border-radius:10px;padding:1rem;}
+.hcard-metric-val{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;}
+.hcard-metric-lab{font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:2px;}
+.hcard-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden;}
+.hcard-fill{height:100%;border-radius:2px;background:var(--gradient2);animation:grow 2s ease forwards;}
+@keyframes grow{from{width:0;}to{width:var(--w);}}
+.hcard-chart{margin-top:1.2rem;display:flex;align-items:flex-end;gap:6px;height:60px;}
+.hbar{flex:1;background:rgba(37,99,235,0.3);border-radius:4px;animation:growUp 1s ease forwards;}
+@keyframes growUp{from{height:0;}to{height:var(--h);}}
+.hbar.accent{background:var(--gradient2);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===== SECTIONS ===== */
+section{padding:100px 5%;}
+.container{max-width:1200px;margin:0 auto;}
+
+.section-badge{
+  display:inline-block;
+  background:rgba(37,99,235,0.08);color:var(--accent);
+  border:1px solid rgba(37,99,235,0.2);
+  font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;
+  padding:5px 14px;border-radius:20px;margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;
+  line-height:1.2;color:var(--primary);margin-bottom:1rem;
+}
+.section-title span{color:var(--accent);}
+.section-desc{font-size:1rem;color:var(--text-light);line-height:1.75;max-width:520px;}
+.text-center{text-align:center;}
+.text-center .section-desc{margin:0 auto;}
+
+/* ===== ABOUT ===== */
+#about{background:var(--bg-light);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;}
+
+.founder-card{
+  background:var(--white);border-radius:24px;overflow:hidden;
+  box-shadow:var(--shadow-lg);position:relative;
+}
+.founder-top{
+  background:var(--gradient);
+  padding:3rem 2rem 5rem;text-align:center;position:relative;
+}
+.founder-avatar{
+  width:100px;height:100px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:#fff;
+  margin:0 auto 1rem;
+  border:4px solid rgba(255,255,255,0.2);
+  box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+.founder-name{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;}
+.founder-role{font-size:0.82rem;color:rgba(255,255,255,0.65);margin-top:4px;letter-spacing:1px;}
+.founder-body{padding:2rem;margin-top:-2.5rem;}
+.founder-quote{
+  background:#fff;border-radius:16px;padding:1.5rem;
+  border-left:4px solid var(--accent);font-size:0.92rem;
+  line-height:1.7;color:var(--text-light);font-style:italic;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);margin-bottom:1.5rem;
+}
+.founder-links{display:flex;gap:0.8rem;}
+.founder-link{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;
+  text-decoration:none;transition:all 0.2s;
+}
+.founder-link.li{background:#0077b5;color:#fff;}
+.founder-link.li:hover{background:#005580;}
+.founder-link.port{background:var(--bg-light);color:var(--accent);border:1px solid var(--border);}
+.founder-link.port:hover{background:var(--accent);color:#fff;}
+
+.about-content{display:flex;flex-direction:column;gap:1.5rem;}
+.about-feat{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.2rem;border-radius:12px;
+  border:1px solid var(--border);background:#fff;
+  transition:all 0.3s;cursor:default;
+}
+.about-feat:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateX(6px);}
+.af-icon{
+  width:48px;height:48px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.af-icon.blue{background:rgba(37,99,235,0.1);}
+.af-icon.cyan{background:rgba(6,182,212,0.1);}
+.af-icon.amber{background:rgba(245,158,11,0.1);}
+.af-icon.green{background:rgba(16,185,129,0.1);}
+.af-h{font-size:0.95rem;font-weight:600;margin-bottom:0.3rem;color:var(--primary);}
+.af-p{font-size:0.85rem;color:var(--text-light);line-height:1.6;}
+
+/* ===== SERVICES ===== */
+#services{background:var(--white);}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:1.5rem;max-width:1200px;margin:3rem auto 0;
+}
+.svc-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:2rem;
+  transition:all 0.35s;cursor:default;position:relative;overflow:hidden;
+}
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--gradient2);transform:scaleX(0);transition:transform 0.3s;
+  transform-origin:left;
+}
+.svc-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.svc-card:hover::before{transform:scaleX(1);}
+.svc-num{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--border);line-height:1;margin-bottom:1rem;}
+.svc-icon2{
+  width:56px;height:56px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;
+}
+.svc-card h3{font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:0.7rem;}
+.svc-card p{font-size:0.87rem;color:var(--text-light);line-height:1.7;margin-bottom:1.2rem;}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.svc-list li{font-size:0.8rem;color:var(--text-light);display:flex;align-items:center;gap:6px;}
+.svc-list li::before{content:'✓';color:var(--accent);font-weight:700;font-size:0.8rem;}
+
+/* ===== PORTFOLIO ===== */
+#portfolio{background:var(--bg-light);}
+.portfolio-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;max-width:1200px;margin:3rem auto 0;
+}
+.port-card{
+  background:#fff;border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  transition:all 0.3s;
+}
+.port-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.port-img{
+  height:200px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;
+}
+.port-img.g1{background:linear-gradient(135deg,#0a1628,#2563eb);}
+.port-img.g2{background:linear-gradient(135deg,#064e3b,#06b6d4);}
+.port-img.g3{background:linear-gradient(135deg,#4c1d95,#f59e0b);}
+.port-overlay{
+  position:absolute;inset:0;
+  background:rgba(10,22,40,0.7);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity 0.3s;
+}
+.port-card:hover .port-overlay{opacity:1;}
+.port-overlay a{
+  background:#fff;color:var(--accent);
+  padding:10px 20px;border-radius:8px;font-weight:600;font-size:0.85rem;text-decoration:none;
+}
+.port-body{padding:1.5rem;}
+.port-tag{font-size:0.7rem;letter-spacing:2px;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;}
+.port-body h3{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:0.5rem;}
+.port-body p{font-size:0.84rem;color:var(--text-light);line-height:1.6;}
+.port-cta-wrap{text-align:center;margin-top:3rem;}
+
+/* ===== TESTIMONIALS ===== */
+#testimonials{background:var(--primary);position:relative;overflow:hidden;}
+#testimonials::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(37,99,235,0.2),transparent);
+}
+.test-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;max-width:1200px;margin:3rem auto 0;
+}
+.test-card2{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:2rem;
+  transition:all 0.3s;position:relative;
+}
+.test-card2:hover{background:rgba(255,255,255,0.09);transform:translateY(-4px);}
+.quote-mark{font-size:3rem;color:rgba(37,99,235,0.4);line-height:1;margin-bottom:0.5rem;font-family:serif;}
+.test-text{font-size:0.92rem;color:rgba(255,255,255,0.8);line-height:1.75;margin-bottom:1.5rem;font-style:italic;}
+.test-stars2{color:var(--accent3);font-size:0.85rem;margin-bottom:1.2rem;letter-spacing:2px;}
+.test-author2{display:flex;align-items:center;gap:0.9rem;}
+.test-av{
+  width:46px;height:46px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1rem;color:#fff;flex-shrink:0;
+}
+.test-name2{font-weight:600;font-size:0.9rem;color:#fff;}
+.test-company{font-size:0.78rem;color:rgba(255,255,255,0.5);}
+
+/* Client logos */
+.client-logos{
+  margin-top:4rem;padding-top:3rem;
+  border-top:1px solid rgba(255,255,255,0.1);
+  text-align:center;
+}
+.cl-title{font-size:0.75rem;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:2rem;}
+.cl-grid{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;
+  max-width:900px;margin:0 auto;
+}
+.cl-logo{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;padding:12px 24px;
+  font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:1px;
+  transition:all 0.2s;
+}
+.cl-logo:hover{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);}
+
+/* ===== BLOG ===== */
+#blog{background:var(--white);}
+.blog-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;max-width:1200px;margin:3rem auto 0;
+}
+.blog-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  transition:all 0.3s;
+}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.blog-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative;}
+.blog-img.b1{background:linear-gradient(135deg,#1e3a5f,#2563eb);}
+.blog-img.b2{background:linear-gradient(135deg,#064e3b,#10b981);}
+.blog-img.b3{background:linear-gradient(135deg,#4c1d95,#8b5cf6);}
+.blog-cat{
+  position:absolute;top:12px;left:12px;
+  background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:3px 10px;border-radius:20px;
+  font-size:0.68rem;color:#fff;letter-spacing:1px;font-weight:600;
+}
+.blog-body{padding:1.5rem;}
+.blog-date{font-size:0.75rem;color:var(--text-light);margin-bottom:0.6rem;}
+.blog-body h3{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:0.6rem;line-height:1.4;}
+.blog-body p{font-size:0.84rem;color:var(--text-light);line-height:1.65;margin-bottom:1rem;}
+.blog-read{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none;
+  transition:gap 0.2s;
+}
+.blog-read:hover{gap:10px;}
+
+/* ===== PRICING ===== */
+#pricing{background:var(--bg-light);}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;max-width:1050px;margin:3rem auto 0;
+}
+.price-card{
+  background:#fff;border:2px solid var(--border);
+  border-radius:24px;padding:2.5rem;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 0 4px rgba(37,99,235,0.08);}
+.price-badge{
+  position:absolute;top:20px;right:20px;
+  background:var(--gradient2);color:#fff;
+  font-size:0.68rem;font-weight:700;letter-spacing:1px;
+  padding:4px 12px;border-radius:20px;text-transform:uppercase;
+}
+.price-icon{font-size:2rem;margin-bottom:1rem;}
+.price-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:0.3rem;}
+.price-tagline{font-size:0.82rem;color:var(--text-light);margin-bottom:1.5rem;}
+.price-amount{
+  font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--primary);
+  margin-bottom:1.5rem;
+}
+.price-amount sup{font-size:1.2rem;vertical-align:super;}
+.price-amount sub{font-size:0.8rem;color:var(--text-light);font-family:'Space Grotesk',sans-serif;font-weight:400;}
+.price-divider{height:1px;background:var(--border);margin-bottom:1.5rem;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem;}
+.price-features li{font-size:0.87rem;color:var(--text-light);display:flex;align-items:center;gap:8px;}
+.price-features li .chk{color:var(--accent);font-weight:700;}
+.price-features li .x{color:#dc2626;}
+.price-btn{
+  display:block;text-align:center;padding:13px;border-radius:10px;
+  font-weight:600;font-size:0.92rem;text-decoration:none;
+  transition:all 0.2s;
+}
+.price-btn.outline{border:2px solid var(--accent);color:var(--accent);}
+.price-btn.outline:hover{background:var(--accent);color:#fff;}
+.price-btn.filled{background:var(--gradient2);color:#fff;box-shadow:0 6px 20px rgba(37,99,235,0.3);}
+.price-btn.filled:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,99,235,0.4);}
+
+/* ===== CONTACT ===== */
+#contact{background:var(--white);}
+.contact-wrap{
+  display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;
+  max-width:1100px;margin:3rem auto 0;align-items:start;
+}
+.contact-info2{display:flex;flex-direction:column;gap:1.2rem;}
+.cinfo-card{
+  display:flex;gap:1rem;align-items:center;
+  padding:1.2rem;border-radius:12px;border:1px solid var(--border);background:#fff;
+  transition:all 0.3s;
+}
+.cinfo-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.ci-icon{
+  width:44px;height:44px;border-radius:10px;flex-shrink:0;
+  background:rgba(37,99,235,0.08);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.ci-label{font-size:0.7rem;color:var(--text-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.ci-val{font-size:0.9rem;font-weight:600;color:var(--primary);}
+.ci-val a{color:inherit;text-decoration:none;}
+.ci-val a:hover{color:var(--accent);}
+
+.wa-btn{
+  display:flex;align-items:center;gap:10px;
+  background:#25d366;color:#fff;
+  padding:13px 20px;border-radius:12px;
+  font-weight:600;font-size:0.9rem;text-decoration:none;
+  transition:all 0.2s;margin-top:0.5rem;
+  box-shadow:0 6px 20px rgba(37,211,102,0.3);
+}
+.wa-btn:hover{background:#1ea952;transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,211,102,0.4);}
+
+.contact-form2{
+  background:var(--bg-light);border-radius:24px;padding:2.5rem;
+  border:1px solid var(--border);
+}
+.form-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--primary);margin-bottom:1.5rem;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg.full{grid-column:1/-1;}
+.fg label{font-size:0.75rem;font-weight:600;color:var(--text-light);letter-spacing:0.5px;text-transform:uppercase;}
+.fg input,.fg textarea,.fg select{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:10px;padding:11px 14px;
+  font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:var(--text);
+  outline:none;transition:all 0.2s;width:100%;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.08);}
+.fg textarea{height:110px;resize:vertical;}
+.fg select option{background:#fff;}
+.submit-btn2{
+  width:100%;background:var(--gradient2);color:#fff;border:none;
+  padding:14px;border-radius:10px;font-size:0.95rem;font-weight:600;
+  cursor:pointer;transition:all 0.2s;
+  font-family:'Space Grotesk',sans-serif;
+  box-shadow:0 6px 20px rgba(37,99,235,0.3);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.submit-btn2:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(37,99,235,0.4);}
+
+/* ===== CLIENT DASHBOARD ===== */
+#dashboard{background:var(--bg-light);}
+.dash-preview{
+  background:var(--primary);border-radius:24px;overflow:hidden;
+  max-width:900px;margin:3rem auto 0;
+  box-shadow:var(--shadow-lg);
+}
+.dash-topbar{
+  background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.1);
+  padding:14px 24px;display:flex;align-items:center;justify-content:space-between;
+}
+.dash-dots{display:flex;gap:6px;}
+.dash-dot{width:12px;height:12px;border-radius:50%;}
+.dash-body{padding:2rem;display:grid;grid-template-columns:200px 1fr;gap:1.5rem;}
+.dash-sidebar{display:flex;flex-direction:column;gap:0.5rem;}
+.dash-nav-item{
+  padding:10px 14px;border-radius:8px;font-size:0.82rem;color:rgba(255,255,255,0.5);
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;
+}
+.dash-nav-item:hover,.dash-nav-item.active{background:rgba(37,99,235,0.2);color:var(--accent2);}
+.dash-main{display:flex;flex-direction:column;gap:1rem;}
+.dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+.dash-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem;}
+.dc-val{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;}
+.dc-lab{font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:2px;}
+.dash-progress{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.2rem;}
+.dp-title{font-size:0.82rem;color:rgba(255,255,255,0.7);margin-bottom:1rem;font-weight:600;}
+.dp-item{margin-bottom:0.8rem;}
+.dp-label{display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:5px;}
+.dp-bar{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+.dp-fill{height:100%;border-radius:3px;background:var(--gradient2);}
+.dash-login-note{
+  text-align:center;margin-top:1.5rem;
+  font-size:0.88rem;color:var(--text-light);
+}
+.dash-login-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gradient2);color:#fff;
+  padding:12px 28px;border-radius:10px;font-weight:600;font-size:0.9rem;
+  text-decoration:none;margin-top:1rem;
+  box-shadow:0 6px 20px rgba(37,99,235,0.3);
+  transition:all 0.2s;
+}
+.dash-login-btn:hover{transform:translateY(-2px);}
+
+/* ===== FOOTER ===== */
+footer{background:var(--primary);color:rgba(255,255,255,0.7);padding:4rem 5% 2rem;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  max-width:1200px;margin:0 auto 3rem;
+}
+.footer-brand{}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.footer-logo-icon{
+  width:40px;height:40px;flex-shrink:0;
+  filter:drop-shadow(0 2px 8px rgba(37,99,235,0.4));
+}
+.footer-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+.footer-logo-text span{color:var(--accent2);}
+.footer-desc{font-size:0.85rem;line-height:1.7;color:rgba(255,255,255,0.5);max-width:260px;margin-bottom:1.5rem;}
+.footer-social{display:flex;gap:0.7rem;}
+.soc-btn{
+  width:38px;height:38px;border-radius:9px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  text-decoration:none;transition:all 0.2s;
+}
+.soc-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);}
+.footer-col h4{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem;font-weight:600;}
+.footer-links2{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+.footer-links2 a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.87rem;transition:color 0.2s;}
+.footer-links2 a:hover{color:var(--accent2);}
+.footer-bottom2{
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:2rem;max-width:1200px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{font-size:0.82rem;color:rgba(255,255,255,0.35);}
+.footer-legal{display:flex;gap:1.5rem;}
+.footer-legal a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.footer-legal a:hover{color:rgba(255,255,255,0.7);}
+
+/* ===== CHATBOT ===== */
+.chat-toggle{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  width:56px;height:56px;border-radius:50%;
+  background:var(--gradient2);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  box-shadow:0 8px 25px rgba(37,99,235,0.5);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.chat-toggle:hover{transform:scale(1.1);box-shadow:0 12px 35px rgba(37,99,235,0.6);}
+.chat-badge{
+  position:absolute;top:-2px;right:-2px;
+  width:18px;height:18px;background:#ef4444;border-radius:50%;
+  font-size:0.65rem;color:#fff;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid #fff;
+}
+.chat-window{
+  position:fixed;bottom:98px;right:28px;z-index:9998;
+  width:320px;background:#fff;border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);overflow:hidden;
+  display:none;transform:scale(0.9) translateY(20px);
+  transition:all 0.3s;transform-origin:bottom right;
+}
+.chat-window.open{display:block;transform:scale(1) translateY(0);}
+.chat-header{
+  background:var(--gradient);padding:1rem 1.2rem;
+  display:flex;align-items:center;gap:10px;
+}
+.chat-av{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.chat-info .chat-name{font-size:0.9rem;font-weight:600;color:#fff;}
+.chat-info .chat-status{font-size:0.72rem;color:rgba(255,255,255,0.65);}
+.chat-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1.2rem;}
+.chat-msgs{
+  height:220px;overflow-y:auto;padding:1rem;
+  display:flex;flex-direction:column;gap:0.8rem;background:var(--bg-light);
+}
+.chat-msg{display:flex;gap:8px;align-items:flex-end;}
+.chat-msg.bot .msg-bubble{background:#fff;border-radius:12px 12px 12px 2px;border:1px solid var(--border);}
+.chat-msg.user{flex-direction:row-reverse;}
+.chat-msg.user .msg-bubble{background:var(--gradient2);color:#fff;border-radius:12px 12px 2px 12px;}
+.msg-av{width:28px;height:28px;border-radius:50%;background:var(--gradient2);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;}
+.msg-bubble{padding:8px 12px;font-size:0.83rem;line-height:1.5;max-width:220px;color:var(--text);}
+.chat-quick{padding:0.7rem 1rem;display:flex;flex-wrap:wrap;gap:0.4rem;border-top:1px solid var(--border);background:#fff;}
+.quick-btn{
+  font-size:0.72rem;padding:5px 10px;border-radius:20px;
+  border:1px solid var(--border);background:#fff;cursor:pointer;color:var(--text);
+  transition:all 0.2s;font-family:'Space Grotesk',sans-serif;
+}
+.quick-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.chat-input-area{
+  display:flex;gap:0.5rem;padding:0.8rem 1rem;
+  border-top:1px solid var(--border);background:#fff;
+}
+.chat-input{
+  flex:1;border:1.5px solid var(--border);border-radius:8px;
+  padding:8px 12px;font-size:0.85rem;outline:none;font-family:'Space Grotesk',sans-serif;
+  transition:border-color 0.2s;
+}
+.chat-input:focus{border-color:var(--accent);}
+.chat-send{
+  background:var(--gradient2);color:#fff;border:none;
+  border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
+}
+.chat-send:hover{transform:scale(1.1);}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* Stagger children */
+.stagger > *{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.stagger.visible > *{opacity:1;transform:translateY(0);}
+.stagger.visible > *:nth-child(1){transition-delay:0.05s;}
+.stagger.visible > *:nth-child(2){transition-delay:0.15s;}
+.stagger.visible > *:nth-child(3){transition-delay:0.25s;}
+.stagger.visible > *:nth-child(4){transition-delay:0.35s;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .about-grid,.contact-wrap,.footer-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .dash-body{grid-template-columns:1fr;}
+  .dash-sidebar{flex-direction:row;flex-wrap:wrap;}
+  .dash-cards{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  section{padding:70px 5%;}
+  .nav-menu{display:none;}
+  .hamburger{display:flex;}
+  .form-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.5rem;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .dash-cards{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">P<span>&</span>Y Infotech</div>
-  <ul class="nav-links">
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#0a1628"/>
+          <stop offset="55%" stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#06b6d4"/>
+          <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+        <linearGradient id="shine" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="white" stop-opacity="1"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect width="44" height="44" rx="12" fill="url(#lg1)"/>
+      <circle cx="8" cy="8" r="2.5" fill="rgba(255,255,255,0.25)"/>
+      <circle cx="36" cy="36" r="2.5" fill="rgba(255,255,255,0.25)"/>
+      <text x="5" y="30" font-family="Arial" font-weight="900" font-size="18" fill="white">P</text>
+      <text x="17" y="28" font-family="Arial" font-weight="700" font-size="11" fill="#06b6d4">&amp;</text>
+      <text x="25" y="30" font-family="Arial" font-weight="900" font-size="18" fill="white">Y</text>
+      <path d="M6 36 L14 36 L14 32 L30 32 L30 36 L38 36" stroke="rgba(6,182,212,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <rect x="0" y="0" width="44" height="44" rx="12" fill="url(#shine)" opacity="0.06"/>
+    </svg>
+    <span class="logo-text">P<span>&amp;</span>Y <em>Infotech</em></span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#home" class="active">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+  <a href="#blog" onclick="toggleMenu()">Blog</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-
-  <div class="hero-tag fade-up">🚀 Next-Gen IT Solutions</div>
-  <h1 class="hero-title fade-up delay-1">
-    <span class="line1">P&amp;Y Infotech</span>
-    <span class="line2">Powering Digital Future</span>
-  </h1>
-  <p class="hero-sub fade-up delay-2">
-    We build cutting-edge software, websites & mobile apps that transform businesses. Your vision, engineered to perfection.
-  </p>
-  <div class="hero-buttons fade-up delay-3">
-    <a href="#services" class="btn-primary">Explore Services</a>
-    <a href="#contact" class="btn-outline">Get a Quote</a>
+<!-- ===== HERO ===== -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-lines">
+    <div class="hero-line" style="width:60%;left:20%;animation-delay:0s;animation-duration:6s;"></div>
+    <div class="hero-line" style="width:40%;left:40%;animation-delay:2s;animation-duration:5s;"></div>
+    <div class="hero-line" style="width:80%;left:10%;animation-delay:4s;animation-duration:7s;"></div>
   </div>
-  <div class="hero-stats fade-up delay-4">
-    <div class="stat">
-      <span class="stat-num">50+</span>
-      <span class="stat-label">Projects Done</span>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Trusted IT Partner Since 2019
     </div>
-    <div class="stat">
-      <span class="stat-num">30+</span>
-      <span class="stat-label">Happy Clients</span>
+    <h1 class="hero-title">
+      Innovative IT Solutions<br/>for <span class="highlight">Business Growth</span>
+    </h1>
+    <p class="hero-sub">
+      P&Y Infotech delivers cutting-edge web, mobile, and software solutions that transform your ideas into powerful digital experiences. Let's build something extraordinary together.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">🚀 Explore Services</a>
+      <a href="#contact" class="btn-outline-white">📞 Get Free Consultation</a>
     </div>
-    <div class="stat">
-      <span class="stat-num">5+</span>
-      <span class="stat-label">Years Experience</span>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">50<span>+</span></span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">30<span>+</span></span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5<span>+</span></span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24<span>/7</span></span>
+        <span class="stat-label">Support Available</span>
+      </div>
     </div>
-    <div class="stat">
-      <span class="stat-num">24/7</span>
-      <span class="stat-label">Support</span>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hcard-title">📊 Project Analytics Dashboard</div>
+      <div class="hcard-metrics">
+        <div class="hcard-metric">
+          <div class="hcard-metric-val">98%</div>
+          <div class="hcard-metric-lab">Client Satisfaction</div>
+          <div class="hcard-bar"><div class="hcard-fill" style="--w:98%"></div></div>
+        </div>
+        <div class="hcard-metric">
+          <div class="hcard-metric-val">50+</div>
+          <div class="hcard-metric-lab">Live Projects</div>
+          <div class="hcard-bar"><div class="hcard-fill" style="--w:75%"></div></div>
+        </div>
+        <div class="hcard-metric">
+          <div class="hcard-metric-val">99.9%</div>
+          <div class="hcard-metric-lab">Uptime SLA</div>
+          <div class="hcard-bar"><div class="hcard-fill" style="--w:99%"></div></div>
+        </div>
+        <div class="hcard-metric">
+          <div class="hcard-metric-val">5⭐</div>
+          <div class="hcard-metric-lab">Avg Rating</div>
+          <div class="hcard-bar"><div class="hcard-fill" style="--w:100%"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;">
+        <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-bottom:8px;letter-spacing:1px;">MONTHLY GROWTH</div>
+        <div class="hcard-chart">
+          <div class="hbar" style="--h:30%;"></div>
+          <div class="hbar" style="--h:50%;"></div>
+          <div class="hbar" style="--h:40%;"></div>
+          <div class="hbar accent" style="--h:70%;"></div>
+          <div class="hbar" style="--h:55%;"></div>
+          <div class="hbar accent" style="--h:85%;"></div>
+          <div class="hbar" style="--h:65%;"></div>
+          <div class="hbar accent" style="--h:100%;"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ===== ABOUT ===== -->
 <section id="about">
-  <div class="about-grid">
-    <div class="about-visual">
-      <div class="about-box main">
-        <div class="about-main-inner" style="width:100%;height:100%;background:linear-gradient(135deg,rgba(123,47,247,0.1),rgba(0,212,255,0.1));display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:5rem;color:rgba(0,212,255,0.15);font-weight:900;">P&amp;Y</div>
-      </div>
-      <div class="about-badge">
-        <strong>5+</strong>
-        <span>YEARS OF EXCELLENCE</span>
-      </div>
-    </div>
-
-    <div class="about-text">
-      <div>
-        <p class="section-label">Who We Are</p>
-        <h2 class="section-title">Innovating <span>Technology</span><br/>Driving Growth</h2>
-        <p class="section-desc">P&Y Infotech, founded by Pankaj Kumar Yadav, is a dynamic IT company delivering smart digital solutions to businesses worldwide. We blend innovation, expertise, and passion to craft technology that works.</p>
-      </div>
-
-      <div class="about-feature">
-        <div class="feat-icon">⚡</div>
-        <div class="feat-content">
-          <h4>Expert-Led Development</h4>
-          <p>Each project is led by Pankaj Kumar Yadav — ensuring quality, clarity, and client satisfaction at every step.</p>
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="founder-card">
+          <div class="founder-top">
+            <div class="founder-avatar">PK</div>
+            <div class="founder-name">Pankaj Kumar Yadav</div>
+            <div class="founder-role">Founder & CEO — P&Y Infotech</div>
+          </div>
+          <div class="founder-body">
+            <div class="founder-quote">
+              "I started P&Y Infotech with one mission — to make world-class technology accessible to every business, big or small. We don't just build software; we build long-term partnerships."
+            </div>
+            <div class="founder-links">
+              <a href="https://www.linkedin.com/in/pankaj-kumar-yadav-b7b8a9216/" target="_blank" class="founder-link li">🔗 LinkedIn</a>
+              <a href="https://pankajbca11.github.io/Portfolio" target="_blank" class="founder-link port">🌐 Portfolio</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="about-feature">
-        <div class="feat-icon">🎯</div>
-        <div class="feat-content">
-          <h4>Client-First Approach</h4>
-          <p>We listen, understand, and build exactly what your business needs — on time, every time.</p>
+      <div class="about-content reveal-right">
+        <div>
+          <span class="section-badge">Who We Are</span>
+          <h2 class="section-title">Driving Innovation,<br/><span>Delivering Results</span></h2>
+          <p class="section-desc" style="margin-bottom:2rem;">P&Y Infotech is a dynamic IT company committed to delivering high-performance digital solutions. Founded by Pankaj Kumar Yadav, we've helped 30+ businesses across industries achieve their digital goals.</p>
         </div>
-      </div>
 
-      <div class="about-feature">
-        <div class="feat-icon">🔒</div>
-        <div class="feat-content">
-          <h4>Secure & Scalable</h4>
-          <p>Our solutions are engineered for security, performance, and growth from day one.</p>
+        <div class="about-feat">
+          <div class="af-icon blue">⚡</div>
+          <div>
+            <div class="af-h">Expert-Led Development</div>
+            <div class="af-p">Every project is personally overseen ensuring top quality at every milestone.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon cyan">🎯</div>
+          <div>
+            <div class="af-h">Client-First Philosophy</div>
+            <div class="af-p">We listen deeply, build iteratively, and deliver exactly what your business needs.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon amber">🔒</div>
+          <div>
+            <div class="af-h">Secure & Scalable Builds</div>
+            <div class="af-p">Our solutions are engineered for security, performance, and future growth.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon green">🤝</div>
+          <div>
+            <div class="af-h">24/7 Dedicated Support</div>
+            <div class="af-p">We stay by your side post-launch with round-the-clock technical assistance.</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ===== SERVICES ===== -->
 <section id="services">
-  <div class="services-header">
-    <p class="section-label">What We Do</p>
+  <div class="text-center reveal">
+    <span class="section-badge">What We Offer</span>
     <h2 class="section-title">Our <span>Services</span></h2>
-    <p class="section-desc">From consulting to deployment — we cover the full technology spectrum to accelerate your business.</p>
+    <p class="section-desc">End-to-end technology services designed to accelerate your business growth and digital transformation.</p>
   </div>
-
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="svc-icon blue">🌐</div>
+  <div class="services-grid stagger">
+    <div class="svc-card">
+      <div class="svc-num">01</div>
+      <div class="svc-icon2" style="background:rgba(37,99,235,0.1);">🌐</div>
       <h3>Web Development</h3>
-      <p>Stunning, high-performance websites and web applications built with modern technologies. From landing pages to full-scale platforms.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">HTML/CSS</span>
-        <span class="svc-tag">React</span>
-        <span class="svc-tag">Node.js</span>
-        <span class="svc-tag">PHP</span>
-      </div>
+      <p>High-performance, responsive websites and web applications that captivate visitors and convert leads into customers.</p>
+      <ul class="svc-list">
+        <li>Custom Website Design</li>
+        <li>E-Commerce Platforms</li>
+        <li>CMS & Admin Panels</li>
+        <li>SEO Optimization</li>
+      </ul>
     </div>
-
-    <div class="service-card">
-      <div class="svc-icon purple">💻</div>
+    <div class="svc-card">
+      <div class="svc-num">02</div>
+      <div class="svc-icon2" style="background:rgba(6,182,212,0.1);">💻</div>
       <h3>Software Development</h3>
-      <p>Custom enterprise software solutions designed to automate, optimize, and transform your business operations efficiently.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Java</span>
-        <span class="svc-tag">Python</span>
-        <span class="svc-tag">ERP</span>
-        <span class="svc-tag">CRM</span>
-      </div>
+      <p>Custom enterprise software built to streamline your operations, automate workflows, and boost productivity.</p>
+      <ul class="svc-list">
+        <li>ERP & CRM Systems</li>
+        <li>Business Automation</li>
+        <li>API Development</li>
+        <li>Cloud Integration</li>
+      </ul>
     </div>
-
-    <div class="service-card">
-      <div class="svc-icon green">📱</div>
+    <div class="svc-card">
+      <div class="svc-num">03</div>
+      <div class="svc-icon2" style="background:rgba(245,158,11,0.1);">📱</div>
       <h3>Mobile App Development</h3>
-      <p>Sleek, user-friendly mobile applications for Android & iOS that deliver seamless experiences across all devices.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Android</span>
-        <span class="svc-tag">iOS</span>
-        <span class="svc-tag">Flutter</span>
-        <span class="svc-tag">React Native</span>
-      </div>
+      <p>Intuitive, feature-rich mobile applications for Android & iOS that users love and businesses rely on.</p>
+      <ul class="svc-list">
+        <li>Android & iOS Apps</li>
+        <li>Flutter & React Native</li>
+        <li>App Store Deployment</li>
+        <li>Maintenance & Updates</li>
+      </ul>
     </div>
-
-    <div class="service-card">
-      <div class="svc-icon orange">🧠</div>
+    <div class="svc-card">
+      <div class="svc-num">04</div>
+      <div class="svc-icon2" style="background:rgba(16,185,129,0.1);">🧠</div>
       <h3>IT Consulting</h3>
-      <p>Strategic IT guidance to help you make the right technology decisions — from infrastructure planning to digital transformation roadmaps.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">Strategy</span>
-        <span class="svc-tag">Cloud</span>
-        <span class="svc-tag">Security</span>
-        <span class="svc-tag">Digital Transformation</span>
-      </div>
+      <p>Strategic technology guidance to help you make confident decisions, reduce costs, and modernize your infrastructure.</p>
+      <ul class="svc-list">
+        <li>Digital Transformation</li>
+        <li>Cloud Strategy</li>
+        <li>Cybersecurity Audit</li>
+        <li>Tech Stack Planning</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio">
+  <div class="text-center reveal">
+    <span class="section-badge">Our Work</span>
+    <h2 class="section-title">Recent <span>Projects</span></h2>
+    <p class="section-desc">A glimpse into the digital solutions we've crafted for our clients across industries.</p>
+  </div>
+  <div class="portfolio-grid stagger">
+    <div class="port-card">
+      <div class="port-img g1">
+        🛒
+        <div class="port-overlay"><a href="https://pankajbca11.github.io/Portfolio" target="_blank">View Project →</a></div>
+      </div>
+      <div class="port-body">
+        <div class="port-tag">Web Development</div>
+        <h3>E-Commerce Platform</h3>
+        <p>Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard for a retail brand.</p>
+      </div>
+    </div>
+    <div class="port-card">
+      <div class="port-img g2">
+        📊
+        <div class="port-overlay"><a href="https://pankajbca11.github.io/Portfolio" target="_blank">View Project →</a></div>
+      </div>
+      <div class="port-body">
+        <div class="port-tag">Software Development</div>
+        <h3>Business ERP System</h3>
+        <p>Custom ERP solution automating HR, finance, and operations for a mid-sized manufacturing company.</p>
+      </div>
+    </div>
+    <div class="port-card">
+      <div class="port-img g3">
+        🏋️
+        <div class="port-overlay"><a href="https://pankajbca11.github.io/Portfolio" target="_blank">View Project →</a></div>
+      </div>
+      <div class="port-body">
+        <div class="port-tag">Mobile App</div>
+        <h3>Health & Fitness App</h3>
+        <p>Cross-platform fitness tracking app with AI-powered workout suggestions, nutrition tracking, and progress analytics.</p>
+      </div>
+    </div>
+  </div>
+  <div class="port-cta-wrap reveal">
+    <a href="https://pankajbca11.github.io/Portfolio" target="_blank" class="btn-primary">View Full Portfolio →</a>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
 <section id="testimonials">
-  <div class="test-header">
-    <p class="section-label">Client Love</p>
-    <h2 class="section-title">What Our <span>Clients Say</span></h2>
-    <p class="section-desc">We let the results and relationships speak for themselves.</p>
+  <div class="text-center reveal" style="position:relative;z-index:1;">
+    <span class="section-badge" style="background:rgba(255,255,255,0.1);color:var(--accent2);border-color:rgba(255,255,255,0.15);">Client Reviews</span>
+    <h2 class="section-title" style="color:#fff;">What Our <span style="color:var(--accent2);">Clients Say</span></h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.55);margin:0 auto;">Real feedback from real businesses we've helped grow.</p>
   </div>
-
-  <div class="test-grid">
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">P&Y Infotech built our e-commerce platform from scratch. The team was professional, communicative, and delivered beyond expectations. Highly recommended!</p>
-      <div class="test-author">
-        <div class="test-avatar">R</div>
+  <div class="test-grid stagger" style="position:relative;z-index:1;">
+    <div class="test-card2">
+      <div class="quote-mark">"</div>
+      <div class="test-stars2">★★★★★</div>
+      <div class="test-text">P&Y Infotech built our e-commerce platform from scratch and delivered beyond expectations. The team was professional, communicative, and genuinely invested in our success.</div>
+      <div class="test-author2">
+        <div class="test-av" style="background:linear-gradient(135deg,#2563eb,#06b6d4);">R</div>
         <div>
-          <div class="test-name">Rahul Sharma</div>
-          <div class="test-role">CEO, ShopEase India</div>
+          <div class="test-name2">Rahul Sharma</div>
+          <div class="test-company">CEO, ShopEase India</div>
         </div>
       </div>
     </div>
-
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">The mobile app they developed for us has transformed our customer engagement. Clean UI, fast performance, and zero bugs on launch. Truly impressive work.</p>
-      <div class="test-author">
-        <div class="test-avatar">P</div>
+    <div class="test-card2">
+      <div class="quote-mark">"</div>
+      <div class="test-stars2">★★★★★</div>
+      <div class="test-text">The mobile app transformed our customer engagement. Clean UI, fast performance, and zero bugs on launch. Truly impressive work by the P&Y team!</div>
+      <div class="test-author2">
+        <div class="test-av" style="background:linear-gradient(135deg,#10b981,#2563eb);">P</div>
         <div>
-          <div class="test-name">Priya Mehta</div>
-          <div class="test-role">Founder, FitTrack App</div>
+          <div class="test-name2">Priya Mehta</div>
+          <div class="test-company">Founder, FitTrack App</div>
         </div>
       </div>
     </div>
-
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-quote">Their IT consulting helped us cut operational costs by 30% and modernize our entire infrastructure. Smart, reliable, and genuinely invested in our success.</p>
-      <div class="test-author">
-        <div class="test-avatar">A</div>
+    <div class="test-card2">
+      <div class="quote-mark">"</div>
+      <div class="test-stars2">★★★★★</div>
+      <div class="test-text">Their IT consulting helped us cut operational costs by 30% and modernize our entire infrastructure. Smart, reliable, and genuinely invested in our success.</div>
+      <div class="test-author2">
+        <div class="test-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">A</div>
         <div>
-          <div class="test-name">Amit Verma</div>
-          <div class="test-role">Director, LogiCorp Solutions</div>
+          <div class="test-name2">Amit Verma</div>
+          <div class="test-company">Director, LogiCorp Solutions</div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="client-logos reveal" style="position:relative;z-index:1;">
+    <div class="cl-title">Trusted By</div>
+    <div class="cl-grid">
+      <div class="cl-logo">ShopEase India</div>
+      <div class="cl-logo">FitTrack App</div>
+      <div class="cl-logo">LogiCorp Solutions</div>
+      <div class="cl-logo">TechNova Pvt Ltd</div>
+      <div class="cl-logo">StartupHub Bihar</div>
+      <div class="cl-logo">DigiRetail Co.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section id="blog">
+  <div class="text-center reveal">
+    <span class="section-badge">Knowledge Hub</span>
+    <h2 class="section-title">Latest <span>Insights</span></h2>
+    <p class="section-desc">IT trends, tips, and success stories to keep you ahead of the curve.</p>
+  </div>
+  <div class="blog-grid stagger">
+    <div class="blog-card">
+      <div class="blog-img b1">🤖<div class="blog-cat">AI & Tech</div></div>
+      <div class="blog-body">
+        <div class="blog-date">March 15, 2025</div>
+        <h3>How AI is Reshaping Software Development in 2025</h3>
+        <p>Explore how artificial intelligence is transforming the way developers write code, test applications, and deliver digital products faster than ever.</p>
+        <a href="#" class="blog-read">Read More →</a>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img b2">☁️<div class="blog-cat">Cloud</div></div>
+      <div class="blog-body">
+        <div class="blog-date">February 28, 2025</div>
+        <h3>5 Reasons Your Business Needs to Move to the Cloud Today</h3>
+        <p>Cloud migration isn't just a trend — it's a business imperative. Here's why small and mid-sized businesses can't afford to wait any longer.</p>
+        <a href="#" class="blog-read">Read More →</a>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img b3">📱<div class="blog-cat">Mobile</div></div>
+      <div class="blog-body">
+        <div class="blog-date">January 20, 2025</div>
+        <h3>Flutter vs React Native: Which Should You Choose in 2025?</h3>
+        <p>A practical comparison of the two leading cross-platform frameworks to help you make the right choice for your next mobile app project.</p>
+        <a href="#" class="blog-read">Read More →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ===== PRICING ===== -->
+<section id="pricing">
+  <div class="text-center reveal">
+    <span class="section-badge">Transparent Pricing</span>
+    <h2 class="section-title">Simple, <span>Honest Packages</span></h2>
+    <p class="section-desc">No hidden fees. Pick the plan that fits your business needs and budget.</p>
+  </div>
+  <div class="pricing-grid stagger">
+    <div class="price-card">
+      <div class="price-icon">🚀</div>
+      <div class="price-name">Basic</div>
+      <div class="price-tagline">Perfect for startups & small businesses</div>
+      <div class="price-amount"><sup>₹</sup>9,999<sub>/project</sub></div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> 5-Page Website</li>
+        <li><span class="chk">✓</span> Responsive Design</li>
+        <li><span class="chk">✓</span> Basic SEO Setup</li>
+        <li><span class="chk">✓</span> Contact Form</li>
+        <li><span class="chk">✓</span> 1 Month Support</li>
+        <li><span class="x">✗</span> Mobile App</li>
+        <li><span class="x">✗</span> Custom Dashboard</li>
+      </ul>
+      <a href="#contact" class="price-btn outline">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-icon">⚡</div>
+      <div class="price-name">Standard</div>
+      <div class="price-tagline">Ideal for growing businesses</div>
+      <div class="price-amount"><sup>₹</sup>24,999<sub>/project</sub></div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> 10-Page Website</li>
+        <li><span class="chk">✓</span> Mobile App (Android)</li>
+        <li><span class="chk">✓</span> Advanced SEO</li>
+        <li><span class="chk">✓</span> Admin Dashboard</li>
+        <li><span class="chk">✓</span> Payment Integration</li>
+        <li><span class="chk">✓</span> 3 Months Support</li>
+        <li><span class="x">✗</span> iOS App</li>
+      </ul>
+      <a href="#contact" class="price-btn filled">Get Started</a>
+    </div>
+    <div class="price-card">
+      <div class="price-icon">💎</div>
+      <div class="price-name">Premium</div>
+      <div class="price-tagline">Enterprise-grade full solution</div>
+      <div class="price-amount"><sup>₹</sup>59,999<sub>/project</sub></div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> Unlimited Pages</li>
+        <li><span class="chk">✓</span> Android + iOS App</li>
+        <li><span class="chk">✓</span> Custom ERP/CRM</li>
+        <li><span class="chk">✓</span> Cloud Hosting Setup</li>
+        <li><span class="chk">✓</span> AI Integration</li>
+        <li><span class="chk">✓</span> 12 Months Support</li>
+        <li><span class="chk">✓</span> Dedicated Manager</li>
+      </ul>
+      <a href="#contact" class="price-btn outline">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENT DASHBOARD ===== -->
+<section id="dashboard">
+  <div class="text-center reveal">
+    <span class="section-badge">Client Portal</span>
+    <h2 class="section-title">Track Your <span>Project Live</span></h2>
+    <p class="section-desc">Log in to your personal dashboard to monitor progress, milestones, and deliverables in real time.</p>
+  </div>
+  <div class="dash-preview reveal">
+    <div class="dash-topbar">
+      <div class="dash-dots">
+        <div class="dash-dot" style="background:#ff5f56;"></div>
+        <div class="dash-dot" style="background:#ffbd2e;"></div>
+        <div class="dash-dot" style="background:#27c93f;"></div>
+      </div>
+      <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);">🔒 client.pyinfotech.com/dashboard</span>
+    </div>
+    <div class="dash-body">
+      <div class="dash-sidebar">
+        <div class="dash-nav-item active">📊 Overview</div>
+        <div class="dash-nav-item">📁 My Projects</div>
+        <div class="dash-nav-item">📅 Milestones</div>
+        <div class="dash-nav-item">💬 Messages</div>
+        <div class="dash-nav-item">📄 Documents</div>
+        <div class="dash-nav-item">💳 Invoices</div>
+      </div>
+      <div class="dash-main">
+        <div class="dash-cards">
+          <div class="dash-card">
+            <div class="dc-val">3</div>
+            <div class="dc-lab">Active Projects</div>
+          </div>
+          <div class="dash-card">
+            <div class="dc-val">78%</div>
+            <div class="dc-lab">Avg Progress</div>
+          </div>
+          <div class="dash-card">
+            <div class="dc-val">12</div>
+            <div class="dc-lab">Tasks Done</div>
+          </div>
+        </div>
+        <div class="dash-progress">
+          <div class="dp-title">Project Progress</div>
+          <div class="dp-item">
+            <div class="dp-label"><span>E-Commerce Website</span><span>85%</span></div>
+            <div class="dp-bar"><div class="dp-fill" style="width:85%;"></div></div>
+          </div>
+          <div class="dp-item">
+            <div class="dp-label"><span>Mobile App (Android)</span><span>60%</span></div>
+            <div class="dp-bar"><div class="dp-fill" style="width:60%;"></div></div>
+          </div>
+          <div class="dp-item">
+            <div class="dp-label"><span>Admin Dashboard</span><span>40%</span></div>
+            <div class="dp-bar"><div class="dp-fill" style="width:40%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dash-login-note">
+    <p>Are you a P&Y Infotech client? Access your project dashboard.</p>
+    <a href="#contact" class="dash-login-btn">🔐 Request Dashboard Access</a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
 <section id="contact">
-  <div class="contact-grid">
-    <div>
-      <p class="section-label">Reach Out</p>
-      <h2 class="section-title">Let's Build <span>Something Great</span></h2>
-      <p class="section-desc" style="margin-bottom:2.5rem;">Have a project in mind? Get in touch with us today and let's turn your idea into reality.</p>
-
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="c-icon">👤</div>
-          <div>
-            <div class="c-label">Owner</div>
-            <div class="c-value">Pankaj Kumar Yadav</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">📞</div>
-          <div>
-            <div class="c-label">Mobile</div>
-            <div class="c-value">+91 9709354054</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">✉️</div>
-          <div>
-            <div class="c-label">Email</div>
-            <div class="c-value">Pankajbca11@gmail.com</div>
-          </div>
+  <div class="text-center reveal">
+    <span class="section-badge">Let's Connect</span>
+    <h2 class="section-title">Start Your <span>Project Today</span></h2>
+    <p class="section-desc">Have an idea? Let's talk. Fill in the form and we'll get back to you within 24 hours.</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info2 reveal-left">
+      <div class="cinfo-card">
+        <div class="ci-icon">👤</div>
+        <div>
+          <div class="ci-label">Founder</div>
+          <div class="ci-val">Pankaj Kumar Yadav</div>
         </div>
       </div>
+      <div class="cinfo-card">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Mobile</div>
+          <div class="ci-val"><a href="tel:+919709354054">+91 9709354054</a></div>
+        </div>
+      </div>
+      <div class="cinfo-card">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-val"><a href="mailto:Pankajbca11@gmail.com">Pankajbca11@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="cinfo-card">
+        <div class="ci-icon">🔗</div>
+        <div>
+          <div class="ci-label">LinkedIn</div>
+          <div class="ci-val"><a href="https://www.linkedin.com/in/pankaj-kumar-yadav-b7b8a9216/" target="_blank">View Profile</a></div>
+        </div>
+      </div>
+      <a href="https://wa.me/919709354054?text=Hi%20Pankaj!%20I%20am%20interested%20in%20your%20IT%20services." target="_blank" class="wa-btn">
+        <span>💬</span> Chat on WhatsApp
+      </a>
     </div>
 
-    <div class="contact-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="John Doe"/>
+    <div class="contact-form2 reveal-right">
+      <div class="form-title">Send a Message 📨</div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Full Name *</label>
+          <input type="text" placeholder="John Doe" id="cname"/>
         </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@example.com"/>
+        <div class="fg">
+          <label>Email Address *</label>
+          <input type="email" placeholder="john@example.com" id="cemail"/>
+        </div>
+        <div class="fg">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 00000 00000" id="cphone"/>
+        </div>
+        <div class="fg">
+          <label>Service Needed</label>
+          <select id="cservice">
+            <option value="" disabled selected>Select service...</option>
+            <option>Web Development</option>
+            <option>Software Development</option>
+            <option>Mobile App Development</option>
+            <option>IT Consulting</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg full">
+          <label>Project Details</label>
+          <textarea placeholder="Tell us about your project, timeline, and budget..." id="cmsg"></textarea>
         </div>
       </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" placeholder="+91 00000 00000"/>
-      </div>
-      <div class="form-group">
-        <label>Service Needed</label>
-        <select>
-          <option value="" disabled selected>Select a service...</option>
-          <option>Web Development</option>
-          <option>Software Development</option>
-          <option>Mobile App Development</option>
-          <option>IT Consulting</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Project Details</label>
-        <textarea placeholder="Tell us about your project..."></textarea>
-      </div>
-      <button class="submit-btn" onclick="alert('Thank you! We will contact you shortly. 🚀')">Send Message →</button>
+      <button class="submit-btn2" onclick="submitForm()">
+        <span>🚀</span> Submit Query
+      </button>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-logo">P<span>&</span>Y Infotech</div>
-  <p class="footer-tagline">Innovating Technology · Driving Growth</p>
-  <div class="footer-links">
-    <a href="#hero">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#testimonials">Reviews</a>
-    <a href="#contact">Contact</a>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg class="footer-logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="flg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1a3a6b"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#flg1)"/>
+          <circle cx="8" cy="8" r="2.5" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="36" cy="36" r="2.5" fill="rgba(255,255,255,0.2)"/>
+          <text x="5" y="30" font-family="Arial" font-weight="900" font-size="18" fill="white">P</text>
+          <text x="17" y="28" font-family="Arial" font-weight="700" font-size="11" fill="#f59e0b">&amp;</text>
+          <text x="25" y="30" font-family="Arial" font-weight="900" font-size="18" fill="white">Y</text>
+          <path d="M6 36 L14 36 L14 32 L30 32 L30 36 L38 36" stroke="rgba(6,182,212,0.4)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="footer-logo-text">P<span>&amp;</span>Y Infotech</span>
+      </div>
+      <p class="footer-desc">Innovative IT solutions that transform businesses and drive digital growth. Your vision, our expertise.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/pankaj-kumar-yadav-b7b8a9216/" target="_blank" class="soc-btn" title="LinkedIn">🔗</a>
+        <a href="https://wa.me/919709354054" target="_blank" class="soc-btn" title="WhatsApp">💬</a>
+        <a href="mailto:Pankajbca11@gmail.com" class="soc-btn" title="Email">✉️</a>
+        <a href="https://pankajbca11.github.io/Portfolio" target="_blank" class="soc-btn" title="Portfolio">🌐</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links2">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links2">
+        <li><a href="#services">Web Development</a></li>
+        <li><a href="#services">Software Dev</a></li>
+        <li><a href="#services">Mobile Apps</a></li>
+        <li><a href="#services">IT Consulting</a></li>
+        <li><a href="#dashboard">Client Portal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul class="footer-links2">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom">
-    © 2024 P&Y Infotech. All rights reserved. | Founded by Pankaj Kumar Yadav
+  <div class="footer-bottom2">
+    <div class="footer-copy">© 2025 P&Y Infotech. All rights reserved. Founded by Pankaj Kumar Yadav.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="https://www.linkedin.com/in/pankaj-kumar-yadav-b7b8a9216/" target="_blank">LinkedIn</a>
+    </div>
   </div>
 </footer>
 
+<!-- ===== LIVE CHATBOT ===== -->
+<button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+  💬
+  <div class="chat-badge">1</div>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-av">🤖</div>
+    <div class="chat-info">
+      <div class="chat-name">P&Y Assistant</div>
+      <div class="chat-status">🟢 Online — Usually replies instantly</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="chat-msg bot">
+      <div class="msg-av">🤖</div>
+      <div class="msg-bubble">👋 Hi! Welcome to P&Y Infotech. I'm here to help. What can I assist you with today?</div>
+    </div>
+  </div>
+  <div class="chat-quick">
+    <button class="quick-btn" onclick="quickReply('Our Services')">Our Services</button>
+    <button class="quick-btn" onclick="quickReply('Get a Quote')">Get a Quote</button>
+    <button class="quick-btn" onclick="quickReply('Contact Pankaj')">Contact Us</button>
+    <button class="quick-btn" onclick="quickReply('View Portfolio')">Portfolio</button>
+  </div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="chatInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button class="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<script>
+// ===== NAV SCROLL =====
+window.addEventListener('scroll',()=>{
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>50);
+  // active links
+  document.querySelectorAll('section[id]').forEach(s=>{
+    const top=s.offsetTop-100,bot=top+s.offsetHeight;
+    if(window.scrollY>=top&&window.scrollY<bot){
+      document.querySelectorAll('.nav-menu a').forEach(a=>a.classList.remove('active'));
+      const link=document.querySelector(`.nav-menu a[href="#${s.id}"]`);
+      if(link)link.classList.add('active');
+    }
+  });
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ===== PARTICLES =====
+(function(){
+  const container=document.getElementById('particles');
+  const colors=['rgba(37,99,235,0.5)','rgba(6,182,212,0.5)','rgba(245,158,11,0.3)'];
+  for(let i=0;i<18;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const size=Math.random()*6+2;
+    p.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// ===== SCROLL REVEAL =====
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // don't unobserve so stagger keeps working
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>observer.observe(el));
+
+// ===== CHATBOT =====
+const chatResponses={
+  'our services':'We offer Web Development, Software Development, Mobile App Development, and IT Consulting. Which service are you interested in?',
+  'get a quote':'To get a quote, please share your project details. You can also fill in the Contact form above or WhatsApp us at +91 9709354054! 📞',
+  'contact pankaj':'You can reach Pankaj Kumar Yadav at 📞 +91 9709354054 or ✉️ Pankajbca11@gmail.com. He usually responds within 2 hours!',
+  'view portfolio':'Check out our work at 🌐 https://pankajbca11.github.io/Portfolio — we have projects across Web, Mobile, and Enterprise software!',
+  'hello':'Hello! 👋 Great to meet you! How can P&Y Infotech help you today?',
+  'hi':'Hi there! 👋 Welcome to P&Y Infotech. What brings you here today?',
+  'pricing':'We offer 3 packages: Basic (₹9,999), Standard (₹24,999), and Premium (₹59,999). The right one depends on your requirements!',
+  'web development':'Our web development team builds responsive, high-performance websites and apps using React, PHP, Node.js, and more! 🌐',
+  'mobile app':'We build beautiful Android and iOS apps using Flutter and React Native. Would you like to discuss your app idea? 📱',
+};
+
+function toggleChat(){
+  const w=document.getElementById('chatWindow');
+  w.classList.toggle('open');
+  document.querySelector('.chat-badge').style.display='none';
+}
+
+function quickReply(msg){
+  addMsg(msg,'user');
+  setTimeout(()=>respond(msg),600);
+}
+
+function sendChat(){
+  const input=document.getElementById('chatInput');
+  const msg=input.value.trim();
+  if(!msg)return;
+  input.value='';
+  addMsg(msg,'user');
+  setTimeout(()=>respond(msg),700);
+}
+
+function respond(msg){
+  const lower=msg.toLowerCase();
+  let reply='Thanks for reaching out! For detailed assistance, please contact us at 📞 +91 9709354054 or fill out the contact form above. We\'ll get back to you within 24 hours! 🚀';
+  for(const key in chatResponses){
+    if(lower.includes(key)){reply=chatResponses[key];break;}
+  }
+  addMsg(reply,'bot');
+}
+
+function addMsg(text,type){
+  const msgs=document.getElementById('chatMsgs');
+  const div=document.createElement('div');
+  div.className=`chat-msg ${type}`;
+  div.innerHTML=type==='bot'
+    ?`<div class="msg-av">🤖</div><div class="msg-bubble">${text}</div>`
+    :`<div class="msg-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+// ===== CONTACT FORM =====
+function submitForm(){
+  const name=document.getElementById('cname').value.trim();
+  const email=document.getElementById('cemail').value.trim();
+  const msg=document.getElementById('cmsg').value.trim();
+  if(!name||!email){alert('Please fill in your Name and Email!');return;}
+  const waMsg=encodeURIComponent(`Hi Pankaj! I'm ${name} (${email}).\n\nService: ${document.getElementById('cservice').value||'Not specified'}\nPhone: ${document.getElementById('cphone').value||'Not provided'}\n\nProject Details:\n${msg||'No details provided'}`);
+  const subject=encodeURIComponent('New Project Inquiry - P&Y Infotech Website');
+  const body=encodeURIComponent(`Hi Pankaj,\n\nName: ${name}\nEmail: ${email}\nPhone: ${document.getElementById('cphone').value||'N/A'}\nService: ${document.getElementById('cservice').value||'N/A'}\n\nProject Details:\n${msg||'N/A'}\n\nBest regards,\n${name}`);
+  alert(`✅ Thank you ${name}! Your query has been submitted.\n\nWe will contact you at ${email} within 24 hours.\n\nYou can also reach us directly at +91 9709354054`);
+}
+</script>
 </body>
 </html>
